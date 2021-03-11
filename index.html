@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>画板</title>
+    <link rel="stylesheet" href="./css/init.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <!-- 工具栏 -->
+    <div id="toolbar" class="toolbar">
+        <!-- 形状 -->
+        <ul class="shape">
+            <!-- 默认铅笔 -->
+            <li class="pen typeactive" onclick="selectShape('pen',event)">铅笔</li>
+            <li class="line" onclick="selectShape('line',event)">直线</li>
+            <li class="rect" onclick="selectShape('rect',event)">矩形</li>
+            <li class="circle" onclick="selectShape('circle',event)">圆</li>
+            <!-- 多边形 -->
+            <li class="poly" onclick="selectShape('poly',event)">多边形</li>
+        </ul>
+        <!-- 边框 -->
+        <ul class="border-style">
+            <li class="eraser" onclick="selectShape('eraser',event)">橡皮檫</li>
+            <li class="stroke styleactive">描边</li>
+            <li class="fill">填充</li>
+        </ul>
+        <!-- 线条颜色，宽度 -->
+        <ul class="line-style">
+            <p>颜色选择器</p>
+            <li class="color-box-black" value="black" onclick="colorSelect(event)"></li>
+            <li class="color-box-green" value="green" onclick="colorSelect(event)"></li>
+            <li class="color-box-red" value="red" onclick="colorSelect(event)"></li>
+            <li class="color-box-yellow" value="yellow" onclick="colorSelect(event)"></li>
+            <li class="color-box-blue" value="blue" onclick="colorSelect(event)"></li>
+            <li>
+                <!-- 选择线条宽度 -->
+                <div class="box linewidth" style="margin: 0;">
+                    <span>线宽</span>
+                    <input type="number" name="number" value="1" max="150" min="1" onchange="selectLineWidth(event)">
+                </div>
+            </li>
+        </ul>
+        <!-- 文件控制 -->
+        <ul class="file-control">
+            <li class="create shezhi" onclick="create()">调整画板尺寸
+                <div id="createPal" class="createPal">
+                    <div class="xinjian_width">
+                        <span>宽</span>
+                        <input id="setWidth" type="number" max="1070" min="500" value="500">
+                    </div>
+                    <div class="xinjian_height">
+                        <span>高</span>
+                        <input id="setHeight" type="number" max="648" min="300" value="300">
+                    </div>
+                    <input type="button" name="queding" value="确定" onclick="determine(event)">
+                    <!-- 取消调整 -->
+                    <div class="xinjian_before" onclick="createClose(event)">+</div>
+                </div>
+            </li>
+            <li class="clear shezhi" onclick="clearSketchpad()">清空</li>
+            <li class="back shezhi" onclick="revoke()">撤销</li>
+            <li class="save shezhi" onclick="save()">保存</li>
+            <li class="cut shezhi" onclick="shearCut('cut')">剪切</li>
+            <li class="copy shezhi" onclick="copy('cut')">复制</li>
+            <li class="copy dowonLoad" onclick="dowonLoad()">下载</li>
+        </ul>
+    </div>
+    <!-- 绘图容器 -->
+    <canvas width="500" height="500" style="cursor: url(./images/pencli-black.svg),auto"></canvas>
+    <!-- 隐藏图片容器 -->
+    <img id="imgDom" src="./images/test.jpeg" style="opacity: 0;width: 1024px;height: 768px;" alt="">
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/index.js"></script>
+<script src="./js/tap.js"></script>
+
+</html>
